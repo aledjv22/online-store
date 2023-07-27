@@ -103,7 +103,11 @@ const Navbar = () => {
                         Sign In
                     </NavLink>
                 </li>
-                <li className='flex item-center h-[20px]'>
+                <li className='flex item-center h-[20px]'
+                onClick={()=>{
+                    context.openCheckoutSideMenu();
+                    context.closeProductDetail();
+                }}>
                     <AiOutlineShoppingCart className='h-full w-full'/>
                     <div>{context.count}</div>
                 </li>

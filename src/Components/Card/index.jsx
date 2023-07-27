@@ -1,4 +1,4 @@
-import { CiCirclePlus } from "react-icons/ci";
+import { CiCirclePlus, CiCircleCheck } from "react-icons/ci";
 import { useContext } from "react";
 import { ShoppingCartContext } from '../../Context';
 
@@ -8,6 +8,31 @@ const Card = (data) => {
     const showProduct = (product) => {
         context.openProductDetail();
         context.setProductToShow(product);
+        context.closeCheckoutSideMenu();
+    }
+
+    const addToCart = (event, product) => {
+        event.stopPropagation();
+        context.setCount(context.count + 1);
+        context.setCartProducts([...context.cartProducts, product]);
+        context.openCheckoutSideMenu();
+        context.closeProductDetail();
+    }
+
+    const renderIcon = (id) => {
+        const isInCart = context.cartProducts.filter(product => product.id === id).length > 0;
+
+        return (
+            isInCart ?
+            <CiCircleCheck className='absolute top-0 right-0 flex 
+            justify-center items-center bg-white w-8 h-8 rounded-full 
+            m-2 p-0 stroke-0 text-green-500' />
+            :
+            <CiCirclePlus className='absolute top-0 right-0 flex 
+            justify-center items-center bg-white w-8 h-8 rounded-full 
+            m-2 p-0 stroke-0 hover:text-green-500' 
+            onClick={(event) => addToCart(event, data.data)}/>
+        )
     }
 
     return (
@@ -21,10 +46,7 @@ const Card = (data) => {
                 <img className='w-full h-full object-contain rounded-lg max-h-full 
                 p-1' src={data.data.image} alt={data.data.title} />
                 <button>
-                    <CiCirclePlus className='absolute top-0 right-0 flex 
-                    justify-center items-center bg-white w-8 h-8 rounded-full 
-                    m-2 p-0 stroke-0 hover:text-green-500' 
-                    onClick={() => context.setCount(context.count + 1)}/>
+                    {renderIcon(data.data.id)}
                 </button>
             </figure>
             <p className='flex justify-between'>

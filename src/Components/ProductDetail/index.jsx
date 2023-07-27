@@ -1,11 +1,30 @@
 import { useContext } from "react";
 import { CiCircleRemove } from 'react-icons/ci';
-import { BsCartPlus } from 'react-icons/bs';
+import { BsCartPlus, BsFillCartCheckFill } from 'react-icons/bs';
 import { ShoppingCartContext } from '../../Context';
 
 
 const ProductDetail = () => {
     const context = useContext(ShoppingCartContext);
+
+    const addToCart = (product) => {
+        context.setCount(context.count + 1);
+        context.setCartProducts([...context.cartProducts, product]);
+        context.openCheckoutSideMenu();
+        context.closeProductDetail();
+    }
+
+    const renderIcon = (id) => {
+        const isInCart = context.cartProducts.filter(product => product.id === id).length > 0;
+
+        return (
+            isInCart ?
+            <BsFillCartCheckFill className='w-[25px] h-[25px]'/>
+            :
+            <BsCartPlus className='w-[25px] h-[25px]'
+            onClick={() => addToCart(context.productToShow)}/>
+        )
+    }
 
     return (
         <aside className={`${context.isProductDetailOpen ? 'flex' : 'hidden'} 
@@ -30,9 +49,8 @@ const ProductDetail = () => {
                     ${context.productToShow.price}
                 </span> 
                 <button className='bg-lime-200 w-[45px] h-[32px] rounded-full 
-                text-[20px] font-serif flex justify-center items-center' 
-                onClick={()=>context.setCount(context.count+1)}>
-                    <BsCartPlus className='w-[25px] h-[25px]'/>
+                text-[20px] font-serif flex justify-center items-center'>
+                    {renderIcon(context.productToShow.id)}
                 </button>
             </div>
             <p className='flex flex-col pl-6 pr-6 h-[100px]'>
