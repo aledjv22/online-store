@@ -12,19 +12,19 @@ import './App.css'
 
 const AppRoutes = () => {
   let routes = useRoutes([
-    {path: '/',element: <Home/>},
-    {path: '/clothes',element: <Home/>},
-    {path: '/electronics',element: <Home/>},
-    {path: '/furnitures',element: <Home/>},
-    {path: '/toys',element: <Home/>},
-    {path: '/others',element: <Home/>},
-    {path: '/my-account',element: <MyAccount/>},
-    {path: '/my-order',element: <MyOrder/>},
-    {path: '/my-orders',element: <MyOrders/>},
-    {path: '/my-orders/last',element: <MyOrder/>},
-    {path: '/my-orders/:id',element: <MyOrder/>},
-    {path: '/sign-in',element: <SignIn/>},
-    {path: '/*',element: <NotFound/>},
+    {path: '/online-store/',element: <Home/>},
+    {path: '/online-store/clothes',element: <Home/>},
+    {path: '/online-store/electronics',element: <Home/>},
+    {path: '/online-store/furnitures',element: <Home/>},
+    {path: '/online-store/toys',element: <Home/>},
+    {path: '/online-store/others',element: <Home/>},
+    {path: '/online-store/my-account',element: <MyAccount/>},
+    {path: '/online-store/my-order',element: <MyOrder/>},
+    {path: '/online-store/my-orders',element: <MyOrders/>},
+    {path: '/online-store/my-orders/last',element: <MyOrder/>},
+    {path: '/online-store/my-orders/:id',element: <MyOrder/>},
+    {path: '/online-store/sign-in',element: <SignIn/>},
+    {path: '/online-store/*',element: <NotFound/>},
   ])
   return routes
 }
