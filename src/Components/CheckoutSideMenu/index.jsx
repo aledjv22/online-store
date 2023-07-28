@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CiCircleRemove } from 'react-icons/ci';
 import { ShoppingCartContext } from '../../Context';
 import OrderCard from "../OrderCard";
@@ -14,6 +15,19 @@ const CheckoutSideMenu = () => {
         context.setCount(context.count - 1);
     }
 
+    const handleCheckout = () => {
+        const orderToAdd = {
+            date: '01.01.2023',
+            products: context.cartProducts,
+            totalProducts: context.count,
+            totalPrice: totalPrice(context.cartProducts),
+        }
+
+        context.setOrder([...context.order, orderToAdd]);
+        context.setCartProducts([]);
+        context.setCount(0);
+    }
+
     return (
         <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} 
         flex-col fixed right-0 border border-black rounded-lg bg-white 
@@ -26,7 +40,7 @@ const CheckoutSideMenu = () => {
                     w-full h-full hover:text-red-500 cursor-pointer'/>
                 </button>
             </div>
-            <div className='px-2 overflow-y-scroll'>
+            <div className='px-2 overflow-y-scroll flex-1'>
                 {
                 context.cartProducts.map(product => (
                     <OrderCard 
@@ -40,10 +54,17 @@ const CheckoutSideMenu = () => {
                 }
             </div>
             <div className='px-2'>
-                <p className='flex justify-between items-center'>
+                <p className='flex justify-between items-center mb-[6px]'>
                     <span className='font-normal text-lg'>Total: </span>
                     <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
                 </p>
+                <Link to='/my-orders/last'>
+                    <button 
+                    className='bg-black py-3 text-white rounded-lg w-full mb-[6px]'
+                    onClick={() => handleCheckout()}> 
+                        Checkout
+                    </button>
+                </Link>
             </div>
         </aside>
     );

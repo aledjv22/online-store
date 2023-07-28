@@ -108,8 +108,8 @@ const Navbar = () => {
                     context.openCheckoutSideMenu();
                     context.closeProductDetail();
                 }}>
-                    <AiOutlineShoppingCart className='h-full w-full'/>
-                    <div>{context.count}</div>
+                    <AiOutlineShoppingCart className='h-full w-full cursor-pointer'/>
+                    <div className='cursor-pointer'>{context.count}</div>
                 </li>
             </ul>
         </nav>
