@@ -1,8 +1,20 @@
 import { createContext, useState, useEffect } from 'react';
+import { useLocalStorage } from './useLocalStorage';
+import { useNavigate } from 'react-router-dom';
 
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
+    const navigateTo = useNavigate();
+
+    // Local Storage
+    const {
+        users,
+        saveUser,
+        ordersHistory : order,
+        saveOrder : setOrder,
+    } = useLocalStorage('sign-up', []);
+
     // Shopping Cart - Count
     const [count, setCount] = useState(0);
 
@@ -23,7 +35,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const [cartProducts, setCartProducts] = useState([]);
 
     // Shopping Cart - Order
-    const [order, setOrder] = useState([]);
+    // const [order, setOrder] = useState([]);
 
     // Get products 
     const [items, setItems] = useState(null);
@@ -34,6 +46,12 @@ export const ShoppingCartProvider = ({ children }) => {
 
     // Get products by category
     const [searchByCategory, setSearchByCategory] = useState(null);
+
+    // Current user
+    const [currentUser, setCurrentUser] = useState({});
+
+    // Login status
+    const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
@@ -77,6 +95,35 @@ export const ShoppingCartProvider = ({ children }) => {
         if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory))
     },[items, searchByTitle, searchByCategory]);
 
+    // Adding new users
+    const addUser = (name, email, password) => {
+        if (!name || !email || !password) return alert('Todos los campos son obligatorios');
+
+        if (users.find(user => user.email === email)) return alert('El email ya está registrado');
+
+        let add = { user: name, email: email, password: password };
+        let newUsers = [...users, add];
+        saveUser(newUsers);
+        navigateTo('/online-store/sign-in');
+    }
+
+    // Sign in
+    const signIn = (email, password) => {
+        if (!email || !password) return alert('Todos los campos son obligatorios');
+
+        let user = users.find(user => user.email === email);
+
+        if (!user) return alert('El email no está registrado');
+
+        if (user.password !== password) return alert('La contraseña es incorrecta');
+
+        setCurrentUser({ user: user.user, email: user.email, password: user.password });
+
+        setIsLogged(true);
+
+        navigateTo('/online-store/');
+    }
+
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -100,7 +147,14 @@ export const ShoppingCartProvider = ({ children }) => {
             filteredItems,
             setFilteredItems,
             searchByCategory,
-            setSearchByCategory
+            setSearchByCategory,
+            addUser,
+            signIn,
+            isLogged,
+            setIsLogged,
+            currentUser,
+            setCurrentUser,
+            navigateTo,
         }}>
         {children}
         </ShoppingCartContext.Provider>

@@ -1,7 +1,7 @@
+import { useContext } from 'react';
+import { ShoppingCartContext } from '../../Context';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { ShoppingCartContext } from '../../Context';
-import { useContext } from 'react';
 
 const Navbar = () => {
     const context = useContext(ShoppingCartContext);
@@ -80,18 +80,31 @@ const Navbar = () => {
             </ul>
             <ul className='flex items-center gap-3'>
                 <li className='text-black/60'>
-                    victor.diaz.jauregui@gmail.com                                                 
+                    {
+                    context.isLogged?
+                    context.currentUser.email
+                    :
+                    undefined
+                    }                                                
                 </li>
                 <li>
-                    <NavLink 
-                        to='/online-store/my-orders'
+                    {
+                    context.isLogged?
+                    <NavLink to='/online-store/my-orders'
                         className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
+                        isActive ? activeStyle : undefined
                     }>
                         My Orders
                     </NavLink>
+                    :
+                    <NavLink to='/online-store/sign-in'>
+                        My Orders
+                    </NavLink>
+                    }
                 </li>
                 <li>
+                    {
+                    context.isLogged?
                     <NavLink 
                         to='/online-store/my-account'
                         className={({ isActive }) => 
@@ -99,8 +112,12 @@ const Navbar = () => {
                     }>
                         My Account
                     </NavLink>
+                    : undefined
+                    }
                 </li>
                 <li>
+                    {
+                    !context.isLogged?
                     <NavLink 
                         to='/online-store/sign-in'
                         className={({ isActive }) => 
@@ -108,6 +125,8 @@ const Navbar = () => {
                     }>
                         Sign In
                     </NavLink>
+                    : undefined
+                    }
                 </li>
                 <li className='flex item-center h-[20px]'
                 onClick={()=>{
