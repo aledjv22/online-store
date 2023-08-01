@@ -80,12 +80,9 @@ const Navbar = () => {
             </ul>
             <ul className='flex items-center gap-3'>
                 <li className='text-black/60'>
-                    {
-                    context.isLogged?
+                    {context.isLogged?
                     context.currentUser.email
-                    :
-                    undefined
-                    }                                                
+                    :undefined}                                                
                 </li>
                 <li>
                     {
@@ -108,8 +105,8 @@ const Navbar = () => {
                     <NavLink 
                         to='/online-store/my-account'
                         className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                    }>
+                            isActive ? activeStyle : undefined}
+                        onClick={()=>context.setIsPasswordVisible(false)}>
                         My Account
                     </NavLink>
                     : undefined

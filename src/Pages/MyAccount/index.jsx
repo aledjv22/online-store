@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { ShoppingCartContext } from '../../Context';
 import Layout from '../../Components/Layout';
+import { CiRead } from 'react-icons/ci';
+import { CiUnread } from 'react-icons/ci';
 
 function MyAccount() {
   const context = useContext(ShoppingCartContext);
@@ -26,9 +28,18 @@ function MyAccount() {
           </span>
         </p>
 
-        <p className='w-full px-2 py-1 mb-3'>
+        <p className='w-full px-2 py-1 mb-3 flex items-center'>
           <span className='text-black font-semibold'>Password: </span>
-          <span className='text-gray-600 font-medium'>Not visible</span>
+          <span className='text-gray-600 font-medium ml-[4px]'>
+            {context.isPasswordVisible? context.currentUser.password:'*****'}
+          </span>
+          
+          <button className='ml-auto w-[24px] h-[24px]' 
+          onClick={()=>context.setIsPasswordVisible(!context.isPasswordVisible)}>
+            {context.isPasswordVisible?
+            <CiUnread className='w-full h-full'/>
+            :<CiRead className='w-full h-full'/>}
+          </button>
         </p>
 
         <button className='bg-black py-3 text-white rounded-lg w-full mb-4'

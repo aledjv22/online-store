@@ -53,6 +53,9 @@ export const ShoppingCartProvider = ({ children }) => {
     // Login status
     const [isLogged, setIsLogged] = useState(false);
 
+    // My Account - Password visibility
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
           .then(response => response.json())
@@ -155,6 +158,8 @@ export const ShoppingCartProvider = ({ children }) => {
             currentUser,
             setCurrentUser,
             navigateTo,
+            isPasswordVisible, 
+            setIsPasswordVisible,
         }}>
         {children}
         </ShoppingCartContext.Provider>

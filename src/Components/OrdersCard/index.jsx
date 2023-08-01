@@ -8,11 +8,6 @@ const OrdersCard = props => {
 
     const { totalPrice, totalProducts, date } = props;
 
-    // // Current date
-    // const currentDate = new Date();
-    // // Format "dd.mm.yy"
-    // const formattedDate = `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear().toString()}`;
-    
     return (
         <div className='flex justify-between items-center mb-2 border 
         border-black p-4 w-80 rounded-lg'>
