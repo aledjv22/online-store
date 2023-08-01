@@ -16,11 +16,18 @@ const CheckoutSideMenu = () => {
     }
 
     const handleCheckout = () => {
+        // Current date
+        const currentDate = new Date();
+        
+        // Format "dd.mm.yy"
+        const formattedDate = `${currentDate.getDate()}.${currentDate.getMonth() + 1}.${currentDate.getFullYear().toString()}`;
+
         const orderToAdd = {
-            date: '01.01.2023',
+            user: context.currentUser.email,
             products: context.cartProducts,
-            totalProducts: context.count,
+            totalProducts: context.cartProducts.length,
             totalPrice: totalPrice(context.cartProducts),
+            date: formattedDate,
         }
 
         context.setOrder([...context.order, orderToAdd]);
@@ -59,10 +66,10 @@ const CheckoutSideMenu = () => {
                     <span className='font-normal text-lg'>Total: </span>
                     <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
                 </p>
-                <Link to='/online-store/my-orders/last'>
+                <Link to={context.isLogged?'/online-store/my-orders/last':'/online-store/sign-in'}>
                     <button 
                     className='bg-black py-3 text-white rounded-lg w-full mb-[6px]'
-                    onClick={() => handleCheckout()}> 
+                    onClick={() => {context.isLogged?handleCheckout():undefined}}> 
                         Checkout
                     </button>
                 </Link>

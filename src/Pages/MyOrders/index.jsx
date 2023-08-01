@@ -14,11 +14,14 @@ function MyOrders() {
       </div>
       {
         context.order.map((order, index) => (
+          order.user == context.currentUser.email ? 
           <Link key={index} to={`/online-store/my-orders/${index}`}>
             <OrdersCard 
             totalPrice={order.totalPrice} 
-            totalProducts={order.totalProducts}  />
+            totalProducts={order.totalProducts}
+            date={order.date}/>
           </Link>
+          : undefined
         ))
       }
     </Layout>

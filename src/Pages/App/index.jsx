@@ -6,6 +6,7 @@ import MyOrder from '../MyOrder'
 import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
 import SignIn from '../SignIn'
+import SignUp from '../SignUp'
 import Navbar from '../../Components/Navbar'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import './App.css'
@@ -24,6 +25,7 @@ const AppRoutes = () => {
     {path: '/online-store/my-orders/last',element: <MyOrder/>},
     {path: '/online-store/my-orders/:id',element: <MyOrder/>},
     {path: '/online-store/sign-in',element: <SignIn/>},
+    {path: '/online-store/sign-up',element: <SignUp/>},
     {path: '/online-store/*',element: <NotFound/>},
   ])
   return routes
@@ -31,13 +33,13 @@ const AppRoutes = () => {
 
 const App =() => {  
   return (
-    <ShoppingCartProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ShoppingCartProvider>
         <AppRoutes/>
         <Navbar/>
         <CheckoutSideMenu/>
-      </BrowserRouter>
-    </ShoppingCartProvider>
+      </ShoppingCartProvider>
+    </BrowserRouter>
   )
 }
 
