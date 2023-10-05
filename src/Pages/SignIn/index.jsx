@@ -18,14 +18,14 @@ function SignIn() {
       </div>
 
       <form className='flex flex-col w-[350px]'>
-        <label htmlFor='email'>Email</label>
+        <label htmlFor='emailIn'>Email</label>
         <input className='border border-gray-400 rounded-lg w-full px-2 py-1 mb-2' 
-        type='email' htmlFor='email' placeholder='example@gmail.com' 
+        type='email' htmlFor='emailIn' placeholder='example@gmail.com' 
         autoComplete='username' id='emailIn'/>
         
-        <label className='' htmlFor='password'>Password</label>
+        <label htmlFor='passwordIn'>Password</label>
         <input className='border border-gray-400 rounded-lg w-full px-2 py-1 mb-3' 
-        type='password' htmlFor='password' placeholder='********' 
+        type='password' htmlFor='passwordIn' placeholder='********' 
         autoComplete='current-password' id='passwordIn' />
       </form>
 

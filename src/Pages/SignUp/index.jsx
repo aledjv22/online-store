@@ -23,16 +23,16 @@ function SignUp() {
         <h1>Welcome</h1>
       </div>
       <form className='flex flex-col w-[300px]'>
-        <label htmlFor='name'>Name</label>
+        <label htmlFor='nameUp'>Name</label>
         <input id='nameUp' type='text' htmlFor='name' placeholder='Alejandro Díaz'
         className='border border-gray-400 rounded-lg w-full px-2 py-1 mb-2' />
 
-        <label htmlFor='email'>Email</label>
+        <label htmlFor='emailUp'>Email</label>
         <input id='emailUp' type='email' htmlFor='email' 
         className='border border-gray-400 rounded-lg w-full px-2 py-1 mb-2' 
         placeholder='example@gmail.com' autoComplete='username'/>
 
-        <label htmlFor='password'>Password</label>
+        <label htmlFor='passwordUp'>Password</label>
         <input id='passwordUp' type='password' htmlFor='password'
         className='border border-gray-400 rounded-lg w-full px-2 py-1 mb-3' 
         placeholder='******' autoComplete='current-password'/>
