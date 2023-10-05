@@ -14,10 +14,10 @@ import './App.css'
 const AppRoutes = () => {
   let routes = useRoutes([
     {path: '/online-store/',element: <Home/>},
-    {path: '/online-store/clothes',element: <Home/>},
     {path: '/online-store/electronics',element: <Home/>},
-    {path: '/online-store/furnitures',element: <Home/>},
-    {path: '/online-store/toys',element: <Home/>},
+    {path: '/online-store/jewelery',element: <Home/>},
+    {path: '/online-store/mens-clothing',element: <Home/>},
+    {path: '/online-store/womens-clothing',element: <Home/>},
     {path: '/online-store/others',element: <Home/>},
     {path: '/online-store/my-account',element: <MyAccount/>},
     {path: '/online-store/my-order',element: <MyOrder/>},

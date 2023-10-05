@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { ShoppingCartContext } from '../../Context';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import Shopi from '../../../public/shopi.svg';
 
 const Navbar = () => {
     const context = useContext(ShoppingCartContext);
@@ -10,11 +11,11 @@ const Navbar = () => {
 
     return (
         <nav className='flex justify-between items-center fixed 
-        z-10 top-0 w-full pt-5 px-8 pb-2 text-sm font-light bg-white'>
+        z-10 top-0 w-full pt-2 px-8 pb-2 text-sm font-light bg-white'>
             <ul className='flex items-center gap-3'>
                 <li className='font-semibold text-lg'>
                     <NavLink to='/online-store/'>
-                        Shopi
+                        <img src={Shopi} alt="logo shopi" className='h-[50px]'/>
                     </NavLink>
                 </li>
                 <li>
@@ -29,7 +30,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                        to='/online-store/clothes'
+                        to='/online-store/electronics'
                         onClick={() => context.setSearchByCategory('electronics')}
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
@@ -39,7 +40,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                        to='/online-store/electronics'
+                        to='/online-store/jewelery'
                         onClick={() => context.setSearchByCategory('jewelery')}
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
@@ -49,7 +50,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                        to='/online-store/furnitures'
+                        to='/online-store/mens-clothing'
                         onClick={() => context.setSearchByCategory("men's clothing")}
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
@@ -59,7 +60,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                        to='/online-store/toys'
+                        to='/online-store/womens-clothing'
                         onClick={() => context.setSearchByCategory("women's clothing")}
                         className={({ isActive }) => 
                             isActive ? activeStyle : undefined
