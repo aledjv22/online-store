@@ -67,7 +67,7 @@ export const ShoppingCartProvider = ({ children }) => {
     }
 
     const filteredItemsByCategory = (items, searchByCategory) => {
-        return items?.filter(item => item.category.toLowerCase().includes(searchByCategory.toLowerCase()))
+        return items?.filter(item => (item.category.toLowerCase()) === (searchByCategory.toLowerCase()))
     }
 
     const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
