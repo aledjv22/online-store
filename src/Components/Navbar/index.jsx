@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ShoppingCartContext } from '../../Context';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import Shopi from '../../../public/shopi.svg';
+import Shopi from '/shopi.svg';
 
 const Navbar = () => {
     const context = useContext(ShoppingCartContext);
