@@ -13,7 +13,7 @@ const Navbar = () => {
         <nav className='flex justify-between items-center fixed 
         z-10 top-0 w-full pt-2 px-8 pb-2 text-sm font-light bg-white'>
             <ul className='flex items-center gap-3'>
-                <li className='font-semibold text-lg'>
+                <li>
                     <NavLink to='/online-store/' onClick={() => context.setSearchByCategory('')}>
                         <img src={Shopi} alt="logo shopi" className='h-[50px]'/>
                     </NavLink>
